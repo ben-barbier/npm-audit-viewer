@@ -16,6 +16,7 @@ export class AppComponent {
     public dataSource: Partial<Advisory>[] = [];
     public columnsToDisplay = ['id', 'severity', 'title', 'created', 'url'];
     public auditDate: Date = new Date();
+    public today: Date = new Date();
 
     parseAuditFile(): void {
         const auditFileContent = this.auditFile?.nativeElement.value;

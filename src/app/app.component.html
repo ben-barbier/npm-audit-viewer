@@ -6,6 +6,7 @@
     <ol class="readme">
         <li>Run `yarn audit --json > audit.json` in your project</li>
         <li>Copy `audit.json` file content into this input</li>
+        <li>Change audit date if necessary</li>
         <li>Click on `Parse audit file` button</li>
     </ol>
 
@@ -18,7 +19,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Audit date</mat-label>
-        <input matInput [matDatepicker]="picker" (dateChange)="auditDate = toDate($event.value)" />
+        <input matInput [matDatepicker]="picker" (dateChange)="auditDate = toDate($event.value)" [value]="auditDate" [max]="today" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
