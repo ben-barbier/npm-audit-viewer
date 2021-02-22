@@ -10,14 +10,21 @@
         <li>Click on `Parse audit file` button</li>
     </ol>
 
-    <div>🚨 : Works only with yarn audit.</div>
+    <div class="package-manager">
+        <label id="package-manager-label">Select package manager : </label>
+        <mat-radio-group aria-labelledby="package-manager-label" [value]="'yarn'">
+            <mat-radio-button value="yarn">YARN</mat-radio-button>
+            <mat-radio-button value="npm" disabled matTooltip="🚨 : works only with yarn audit">NPM</mat-radio-button>
+            <mat-radio-button value="pnpm" disabled matTooltip="🚨 : works only with yarn audit">PNPM</mat-radio-button>
+        </mat-radio-group>
+    </div>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
         <mat-label>Paste audit file here</mat-label>
         <textarea matInput #auditFile></textarea>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline" class="auditDate">
         <mat-label>Audit date</mat-label>
         <input matInput [matDatepicker]="picker" (dateChange)="auditDate = toDate($event.value)" [value]="auditDate" [max]="today" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

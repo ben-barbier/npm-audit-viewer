@@ -9,10 +9,25 @@ mat-card {
     .readme {
         font-family: monospace;
     }
-}
 
-button {
-    margin-left: 24px;
+    .package-manager {
+        height: 2.5em;
+        display: flex;
+        align-items: center;
+
+        #package-manager-label {
+            margin-right: 8px;
+        }
+
+        .mat-radio-button ~ .mat-radio-button {
+            margin-left: 16px;
+        }
+    }
+
+    button,
+    .auditDate {
+        margin-left: 24px;
+    }
 }
 
 table {
