@@ -1,3 +1,49 @@
+:host {
+    display: block;
+    padding: 12px;
+}
+
+mat-card {
+    display: inline-block;
+
+    .readme {
+        font-family: monospace;
+    }
+}
+
 button {
     margin-left: 24px;
+}
+
+table {
+    $margin: 12px;
+    width: calc(100% - #{2 * $margin});
+    margin: $margin;
+    box-sizing: border-box;
+    max-width: 1200px;
+}
+
+.severity {
+    padding: 8px;
+    border-radius: 8px;
+
+    &.info {
+        background-color: darkgrey;
+    }
+
+    &.low {
+        background-color: greenyellow;
+    }
+
+    &.moderate {
+        background-color: yellow;
+    }
+
+    &.high {
+        background-color: darkorange;
+    }
+
+    &.critical {
+        background-color: red;
+    }
 }

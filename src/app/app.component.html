@@ -1,12 +1,59 @@
-<pre>
-    1) Run `yarn audit --json > audit.json` in your project
-    2) Copy `audit.json` file content into this input
-    3) Click on `Parse audit file` button
-</pre>
+<h1>NPM audit viewer</h1>
 
-<mat-form-field>
-    <mat-label>Paste audit file here</mat-label>
-    <textarea matInput #auditFile></textarea>
-</mat-form-field>
+<app-github-link></app-github-link>
 
-<button type="button" mat-raised-button color="primary" (click)="parseAuditFile()">Parse audit file</button>
+<mat-card>
+    <ol class="readme">
+        <li>Run `yarn audit --json > audit.json` in your project</li>
+        <li>Copy `audit.json` file content into this input</li>
+        <li>Click on `Parse audit file` button</li>
+    </ol>
+
+    <div>🚨 : Works only with yarn audit.</div>
+
+    <mat-form-field>
+        <mat-label>Paste audit file here</mat-label>
+        <textarea matInput #auditFile></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Audit date</mat-label>
+        <input matInput [matDatepicker]="picker" (dateChange)="auditDate = toDate($event.value)" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button type="button" mat-raised-button color="primary" (click)="parseAuditFile()">Parse audit file</button>
+</mat-card>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" [hidden]="!dataSource.length">
+    <mat-text-column name="id"></mat-text-column>
+    <mat-text-column name="title"></mat-text-column>
+
+    <!-- Severity Column -->
+    <ng-container matColumnDef="severity">
+        <th mat-header-cell *matHeaderCellDef>Severity</th>
+        <td mat-cell *matCellDef="let element">
+            <span [ngClass]="['severity', element.severity]">
+                {{ element.severity }}
+            </span>
+        </td>
+    </ng-container>
+
+    <!-- Created Column -->
+    <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef>Created</th>
+        <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
+    </ng-container>
+
+    <!-- Url Column -->
+    <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef>URL</th>
+        <td mat-cell *matCellDef="let element">
+            <a [href]="element.url" target="_blank">{{ element.url }}</a>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>
