@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Paste audit file here</mat-label>
+    <textarea matInput #auditFile></textarea>
+</mat-form-field>
+
+<button type="button" mat-raised-button color="primary" (click)="parseAuditFile()">Parse audit file</button>
