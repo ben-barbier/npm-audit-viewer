@@ -14,7 +14,7 @@ export class AppComponent {
     public auditSummary: AuditSummary | undefined = undefined;
     public advisories: Advisory[] = [];
     public dataSource: Partial<Advisory>[] = [];
-    public columnsToDisplay = ['id', 'severity', 'title', 'created', 'url'];
+    public columnsToDisplay = ['id', 'severity', 'moduleName', 'title', 'created', 'url'];
     public auditDate: Date = new Date();
     public today: Date = new Date();
 
@@ -43,9 +43,10 @@ export class AppComponent {
                         advisory.id,
                         {
                             id: advisory.id,
-                            created: advisory.created,
-                            title: advisory.title,
                             severity: advisory.severity,
+                            moduleName: advisory.module_name,
+                            title: advisory.title,
+                            created: advisory.created,
                             url: advisory.url,
                         },
                     ]),
